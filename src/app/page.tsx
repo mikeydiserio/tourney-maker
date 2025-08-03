@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import TournamentVisualizer from "./components/TournamentVisualizer";
 import { useToast } from "./hooks/useToast";
 import * as S from './page.styles';
 import ThreeBackground from "./ThreeBackground";
@@ -109,6 +110,8 @@ export default function HomePage() {
     <S.NebulaContainer>
       <ThreeBackground />
     </S.NebulaContainer>
+    {tourneyState === "tournament" && <TournamentVisualizer rounds={rounds} />}
+
 
       
       <S.PageWrapper>

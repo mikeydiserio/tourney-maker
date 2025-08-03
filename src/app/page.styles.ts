@@ -31,7 +31,7 @@ export const animatedGradient = keyframes`
 export const PageWrapper = styled.main`
   width: 80%;
   margin: auto;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
   border-radius: 0.75rem;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1),
@@ -75,11 +75,9 @@ export const Description = styled.p`
 export const PlayerInputSection = styled.div`
   width: 100%;
   max-width: 42rem;
-  background: rgba(255, 255, 255, 0.5);
+  background: transparent;
   padding: 2rem;
   border-radius: 0.75rem;
-  backdrop-filter: blur(4px);
-  box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
