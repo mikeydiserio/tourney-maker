@@ -3,6 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
+export type ToastType = 'success' | 'error' | 'info';
+
+interface ToastProps {
+  message: string;
+  type: ToastType;
+  onClose: () => void;
+}
+
 const slideUp = keyframes`
   from {
     transform: translateY(100%);
@@ -23,11 +31,23 @@ const fadeOut = keyframes`
   }
 `;
 
-const ToastContainer = styled.div<{ visible: boolean }>`
+const ToastContainer = styled.div<{
+  visible: boolean;
+  type: ToastType;
+}>`
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #333;
+  background-color: ${({ type }) => {
+    switch (type) {
+      case 'success':
+        return '#4CAF50';
+      case 'error':
+        return '#f44336';
+      default:
+        return '#333';
+    }
+  }};
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -35,35 +55,23 @@ const ToastContainer = styled.div<{ visible: boolean }>`
   animation: ${({ visible }) => (visible ? slideUp : fadeOut)} 0.5s forwards;
 `;
 
-interface ToastEventDetail {
-  message: string;
-}
-
-const Toast: React.FC = () => {
-  const [visible, setVisible] = useState(false);
-  const [message, setMessage] = useState('');
+const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const handleShowToast = (event: Event) => {
-      const customEvent = event as CustomEvent<ToastEventDetail>;
-      setMessage(customEvent.detail.message);
-      setVisible(true);
+    const timer = setTimeout(() => {
+      setVisible(false);
+      setTimeout(onClose, 500);
+    }, 3000);
 
-      setTimeout(() => {
-        setVisible(false);
-      }, 3000);
-    };
+    return () => clearTimeout(timer);
+  }, [onClose]);
 
-    window.addEventListener('showToast', handleShowToast);
-
-    return () => {
-      window.removeEventListener('showToast', handleShowToast);
-    };
-  }, []);
-
-  if (!visible) return null;
-
-  return <ToastContainer visible={visible}>{message}</ToastContainer>;
+  return (
+    <ToastContainer visible={visible} type={type}>
+      {message}
+    </ToastContainer>
+  );
 };
 
 export default Toast;

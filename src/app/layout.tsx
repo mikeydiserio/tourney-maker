@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
-import Toast from "./components/Toast";
+import { ToastProvider } from "./components/ToastProvider";
 import "./globals.css"; // Keep a minimal global css file
 import StyledComponentsRegistry from "./registry";
 
@@ -22,9 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={myFont.className}>
         <StyledComponentsRegistry>
-          {children}
+          <ToastProvider>{children}</ToastProvider>
         </StyledComponentsRegistry>
-          <Toast />
       </body>
     </html>
   );
