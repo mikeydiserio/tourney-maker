@@ -9,6 +9,9 @@ export default function CosmicNebulaBackground() {
   useEffect(() => {
     if (!mountRef.current) return;
 
+    // Capture the current mount element to avoid ref issues in cleanup
+    const mountElement = mountRef.current;
+
     // Scene setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -24,7 +27,7 @@ export default function CosmicNebulaBackground() {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 1); // Black background
-    mountRef.current.appendChild(renderer.domElement);
+    mountElement.appendChild(renderer.domElement);
 
     camera.position.z = 5;
 
@@ -214,8 +217,8 @@ export default function CosmicNebulaBackground() {
         cancelAnimationFrame(animationId);
       }
       window.removeEventListener("resize", handleResize);
-      if (mountRef.current) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mountElement) {
+        mountElement.removeChild(renderer.domElement);
       }
       renderer.dispose();
     };

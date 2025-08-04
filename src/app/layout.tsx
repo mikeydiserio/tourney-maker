@@ -1,7 +1,10 @@
+"use client";
+
 import type { Metadata } from "next";
-import localFont from 'next/font/local';
-import { ToastProvider } from "./components/ToastProvider";
+import localFont from "next/font/local";
+import { ThemeProvider } from "styled-components";
 import "./globals.css"; // Keep a minimal global css file
+import { theme } from "./globalStyles";
 import StyledComponentsRegistry from "./registry";
 
 export const metadata: Metadata = {
@@ -10,8 +13,8 @@ export const metadata: Metadata = {
 };
 
 const myFont = localFont({
-  src: './fonts/LibertinusSerif-Regular.woff',
-})
+  src: "./fonts/LibertinusSerif-Regular.woff",
+});
 
 export default function RootLayout({
   children,
@@ -21,9 +24,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={myFont.className}>
-        <StyledComponentsRegistry>
-          <ToastProvider>{children}</ToastProvider>
-        </StyledComponentsRegistry>
+        <ThemeProvider theme={theme.dark}>
+          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        </ThemeProvider>
       </body>
     </html>
   );

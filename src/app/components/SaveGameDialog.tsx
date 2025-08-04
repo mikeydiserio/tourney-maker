@@ -1,7 +1,7 @@
-'use client'
+"use client";
 
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const DialogOverlay = styled.div`
   position: fixed;
@@ -44,7 +44,8 @@ const Button = styled.button<{ primary?: boolean }>`
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   border: none;
-  background: ${({ primary }) => (primary ? 'linear-gradient(45deg, #8a2be2, #4a0d67)' : '#3d325a')};
+  background: ${({ primary }) =>
+    primary ? "linear-gradient(45deg, #8a2be2, #4a0d67)" : "#3d325a"};
   color: white;
   font-size: 1rem;
   cursor: pointer;
@@ -62,14 +63,20 @@ interface SaveGameDialogProps {
   onCancel: () => void;
 }
 
-const SaveGameDialog: React.FC<SaveGameDialogProps> = ({ onSave, onDontSave, onCancel }) => {
+const SaveGameDialog: React.FC<SaveGameDialogProps> = ({
+  onSave,
+  onDontSave,
+  onCancel,
+}) => {
   return (
     <DialogOverlay>
       <DialogBox>
         <h2>Save Tournament?</h2>
         <p>Would you like to save this tournament to your history?</p>
         <ButtonGroup>
-          <Button primary onClick={onSave}>Save and Start New</Button>
+          <Button primary onClick={onSave}>
+            Save and Start New
+          </Button>
           <Button onClick={onDontSave}>Start New (Don't Save)</Button>
           <Button onClick={onCancel}>Cancel</Button>
         </ButtonGroup>
