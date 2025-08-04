@@ -77,7 +77,7 @@ const SaveGameDialog: React.FC<SaveGameDialogProps> = ({
           <Button primary onClick={onSave}>
             Save and Start New
           </Button>
-          <Button onClick={onDontSave}>Start New (Don't Save)</Button>
+          <Button onClick={onDontSave}>Start New (Don&apos;t Save)</Button>
           <Button onClick={onCancel}>Cancel</Button>
         </ButtonGroup>
       </DialogBox>
