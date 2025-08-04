@@ -1,16 +1,10 @@
 "use client";
 
-import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { ThemeProvider } from "styled-components";
 import "./globals.css"; // Keep a minimal global css file
 import { theme } from "./globalStyles";
 import StyledComponentsRegistry from "./registry";
-
-export const metadata: Metadata = {
-  title: "Tournament Builder",
-  description: "Build and run a tournament bracket seamlessly.",
-};
 
 const myFont = localFont({
   src: "./fonts/LibertinusSerif-Regular.woff",
