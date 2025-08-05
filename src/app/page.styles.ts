@@ -148,11 +148,11 @@ export const RemoveButton = styled.button`
   }
 `;
 
-export const StartButton = styled.button<{ isActive?: boolean }>`
+export const StartButton = styled.button<{ $isActive?: boolean }>`
   padding: 1rem 2.5rem;
   border-radius: 50px;
   border: none;
-  background: ${({ isActive }) => (isActive ? 'linear-gradient(45deg, #ff69b4, #ffb6c1)' : 'linear-gradient(45deg, #8a2be2, #4a0d67)')};
+  background: ${({ $isActive }) => ($isActive ? 'linear-gradient(45deg, #ff69b4, #ffb6c1)' : 'linear-gradient(45deg, #8a2be2, #4a0d67)')};
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
@@ -170,7 +170,7 @@ export const StartButton = styled.button<{ isActive?: boolean }>`
 
   &:not(:disabled):hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px ${({ isActive }) => (isActive ? 'rgba(255, 105, 180, 0.5)' : 'rgba(138, 43, 226, 0.5)')};
+    box-shadow: 0 8px 25px ${({ $isActive }) => ($isActive ? 'rgba(255, 105, 180, 0.5)' : 'rgba(138, 43, 226, 0.5)')};
   }
 `;
 

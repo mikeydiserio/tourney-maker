@@ -1,13 +1,16 @@
 "use client";
-
 import { useMemo, useState } from "react";
+import Header from "./components/Header";
 import HistoryPanel from "./components/HistoryPanel";
 import PlayerManager from "./components/PlayerManager";
 import SaveGameDialog from "./components/SaveGameDialog";
 import TournamentFlow from "./components/TournamentFlow";
 import CosmicNebulaBackground from "./CosmicNebulaBackground";
+import FireBackground from "./FireBackground";
+import ForestBackground from "./ForestBackground";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import { useToast } from "./hooks/useToast";
+import OceanBackground from "./OceanBackground";
 import * as S from "./page.styles";
 import { Matchup, Player, Round, Tournament } from "./types";
 import { isPowerOfTwo, shuffleArray } from "./utils";
@@ -27,6 +30,7 @@ export default function HomePage() {
   );
   const [isHistoryPanelOpen, setHistoryPanelOpen] = useState(false);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
+  const [background, setBackground] = useState("cosmic");
 
   const handleAddPlayer = () => {
     if (newPlayerName.trim()) {
@@ -145,11 +149,23 @@ export default function HomePage() {
     return lastRound.matchups.every((m) => m.winner !== null);
   }, [rounds]);
 
+  const renderBackground = () => {
+    switch (background) {
+      case "fire":
+        return <FireBackground />;
+      case "ocean":
+        return <OceanBackground />;
+      case "forest":
+        return <ForestBackground />;
+      default:
+        return <CosmicNebulaBackground />;
+    }
+  };
+
   return (
     <>
-      <S.NebulaContainer>
-        <CosmicNebulaBackground />
-      </S.NebulaContainer>
+      <S.NebulaContainer>{renderBackground()}</S.NebulaContainer>
+      <Header onBackgroundChange={setBackground} />
       <S.PageWrapper>
         <S.HistoryButton onClick={() => setHistoryPanelOpen(true)}>
           History

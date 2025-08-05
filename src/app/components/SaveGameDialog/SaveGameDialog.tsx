@@ -40,12 +40,12 @@ const ButtonGroup = styled.div`
   margin-top: 1.5rem;
 `;
 
-const Button = styled.button<{ primary?: boolean }>`
+const Button = styled.button<{ $primary?: boolean }>`
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   border: none;
-  background: ${({ primary }) =>
-    primary ? "linear-gradient(45deg, #8a2be2, #4a0d67)" : "#3d325a"};
+  background: ${({ $primary }) =>
+    $primary ? "linear-gradient(45deg, #8a2be2, #4a0d67)" : "#3d325a"};
   color: white;
   font-size: 1rem;
   cursor: pointer;
@@ -74,7 +74,7 @@ const SaveGameDialog: React.FC<SaveGameDialogProps> = ({
         <h2>Save Tournament?</h2>
         <p>Would you like to save this tournament to your history?</p>
         <ButtonGroup>
-          <Button primary onClick={onSave}>
+          <Button $primary onClick={onSave}>
             Save and Start New
           </Button>
           <Button onClick={onDontSave}>Start New (Don&apos;t Save)</Button>

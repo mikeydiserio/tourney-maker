@@ -32,7 +32,7 @@ const fadeOut = keyframes`
 `;
 
 const ToastContainer = styled.div<{
-  visible: boolean;
+  $visible: boolean;
   type: ToastType;
 }>`
   position: fixed;
@@ -52,7 +52,7 @@ const ToastContainer = styled.div<{
   padding: 15px;
   border-radius: 5px;
   z-index: 1000;
-  animation: ${({ visible }) => (visible ? slideUp : fadeOut)} 0.5s forwards;
+  animation: ${({ $visible }) => ($visible ? slideUp : fadeOut)} 0.5s forwards;
 `;
 
 const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
@@ -68,7 +68,7 @@ const Toast: React.FC<ToastProps> = ({ message, type, onClose }) => {
   }, [onClose]);
 
   return (
-    <ToastContainer visible={visible} type={type}>
+    <ToastContainer $visible={visible} type={type}>
       {message}
     </ToastContainer>
   );

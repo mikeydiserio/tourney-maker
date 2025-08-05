@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import * as S from "../page.styles";
-import { Player, Round } from "../types";
+import * as S from "../../page.styles";
+import { Player, Round } from "../../types";
 
 interface TournamentFlowProps {
   rounds: Round[];
@@ -75,7 +75,7 @@ const TournamentFlow: React.FC<TournamentFlowProps> = ({
       <S.StartButton
         onClick={handleNextRound}
         disabled={!isCurrentRoundComplete}
-        isActive={isCurrentRoundComplete}
+        $isActive={isCurrentRoundComplete}
       >
         {isFinalRound ? "Finish Tournament" : "Next Round"}
       </S.StartButton>

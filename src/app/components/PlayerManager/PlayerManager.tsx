@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import * as S from "../page.styles";
-import { Player } from "../types";
-import { isPowerOfTwo } from "../utils";
+import * as S from "../../page.styles";
+import { Player } from "../../types";
+import { isPowerOfTwo } from "../../utils";
 
 interface PlayerManagerProps {
   players: Player[];
@@ -30,8 +30,12 @@ const PlayerManager: React.FC<PlayerManagerProps> = ({
           id="PlayerName"
           type="text"
           value={newPlayerName}
-          onChange={(e) => setNewPlayerName(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleAddPlayer()}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setNewPlayerName(e.target.value)
+          }
+          onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) =>
+            e.key === "Enter" && handleAddPlayer()
+          }
           placeholder="Enter player name..."
         />
         <S.AddButton onClick={handleAddPlayer}>Add</S.AddButton>
